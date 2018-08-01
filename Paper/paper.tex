@@ -4,6 +4,7 @@
 \usepackage{comment}
 \usepackage{graphicx} 
 \usepackage{xcolor}
+\usepackage{bm}
 
 \usepackage[%frenchlinks=true,
 colorlinks=true,
@@ -44,7 +45,28 @@ Here we study how to create fluxes with cold atoms, which can be used to study s
 
 \section{Design}
 
+\subsection{Physical System}
 Describe the system. The system has three parts: Two reservoirs and a link between them; see Figure 1a. One reservoir is made of a non-interacting (for simplicity) gas of particles at temperature $T$. We call these particles probes or $A$. The reservoir is connected to the link. The link is a potential that acts only on particles $A$ (for simplicity). The second reservoir is made of interacting particles $B$. These particles make a system of interest, which we would like to analyze. 
+
+\subsection{Determining the Link Potential}
+We now present a procedure for determining a link potential that produces a generic desirable flux properties. This simple procedure performs a global search over a family of possible link potentials in order to minimize the difference between the desired flux properties and the actual flux properties. Due to the non-convex nature of this optimization problem, we perform this search using the well-known global optimization routine called Differential Evolution (DE) \cite{original DE paper}. Despite its astounding simplicity, this algorithm does an excellent job of balancing the need to search the entire space against the need to learn from subsequent trials in the optimization process in order to speed up convergence. 
+
+To start, we must specify the ideal desired flux profile $T(k)$ where $k$ is the incident momentum. This could be, for instance, a ``comb'' profile that only allows particle flux near a specified momentum, but our prescription applies to a broad class of flux profiles.
+
+We also must specify the form of the link potential, $V(x, \bm{\theta})$, with unknown parameters $\bm{\theta}$. The functional form of the link potential should be chosen to represent the class of physically realizable potentials within the experimental context. In our case, we assume a sum of Gaussian potentials:
+\begin{equation}
+V(x,\{\bm{A},\bm{\mu},\bm{\sigma} \}) = \sum_{i=1}^{N}\frac{A_i}{\sqrt{2\pi\sigma_i^2}}\exp\left[{-\frac{(x-\mu_i)^2}{2\sigma_i^2}}\right],
+\end{equation}
+where $N$ is the number of Gaussian potentials (and the length of the parameter vectors $\bm{A}$, $\bm{\mu}$, and $\bm{\sigma}$).
+
+In addition to specifying the form of the link potential, we may also need to specify a set of constraints on the parameters themselves in order to reflect the limitations in creating the physical potentials. In our case, we will enforce the following constraints
+\begin{align}
+  \sum_{i=1}^{N}\mu_i &= 0 & \\
+  \sigma_i &> 0 &\forall i \in\{1,2,\ldots,N\}\\
+  0 &\leq A_i < A^\mathrm{max} &\forall i \in\{1,2,\ldots,N\}             
+\end{align}
+
+In addition there may be generic constraints on the potential itself 
 
  It is clear that by changing the potential in the link we can change the flux. Let us describe how we compute potentials to create desirable fluxes. In this section we discuss this.  Describe the procedure here: We set the desirable momentum profile, guess a potential, calculate the corresponding transmission coefficient, minimize the parameters. 
 
