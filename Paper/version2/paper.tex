@@ -53,15 +53,25 @@ Here we study how to create fluxes with cold atoms, which can be used to study s
 Describe the system. The system has three parts: Two reservoirs and a link between them; see Figure 1a. One reservoir is made of a non-interacting (for simplicity) gas of particles at temperature $T$. We call these particles probes or $A$. The reservoir is connected to the link. The link is a potential that acts only on particles $A$ (for simplicity). The second reservoir is made of interacting particles $B$. These particles make a system of interest, which we would like to analyze. 
 
 \subsection{Procedure for Finding a Link Potential}\label{sec:procedure_link}
-We find an appropriate link potential $V_0(x) \equiv V(x,\bm{\theta}^*)$ by performing a global search over a family of possible potentials $V(x,\bm{\theta})$ for the parameters $\bm{\theta}^*$ that reduce the difference between the desired transmission-momentum profile $T_0(k)$ and the actual profile $T_{\bm\theta}(k)$ determined by a sample potential $V(x, \bm{\theta})$. Concretely, we minimize the cost $J_{\bm{\theta}}$ which is a function of $T_0(k) - T_{\bm{\theta}}(k)$ but may also explicitly depend upon $V(x,\bm{\theta})$ and $\bm{\theta}$ in order to encode practical, experimental constraints on the solutions for the link potential. Given the cost function, the {\it optimal} parameters are $\bm{\theta}^* = \argmin_{\bm{\theta}}J_{\bm\theta}$. However, we do not need to find the {\it optimal} link potential; one that is {\it good enough} in terms of experimental requirements will do. This relaxed goal alleviates concerns about convergence to the global optimum.
-
-We perform the minimization outlined above using the global optimization routine called Differential Evolution (DE) \cite{original DE paper}. This evolutionary-based search algorithm is suitable given the non-convex (multiple local minima) nature of the optimization problem. Despite its simplicity, DE does a good job of balancing exploration of the space of link potentials against the need to efficiently learn from each sample with little tuning of the model settings. Emperically, we found DE to perform much better than several other approaches including random search, Nelder-Mead, and Simulated Annealing \cite{Tests performed using mathematica}.
-
-We parametrize the family of link potentials $V(x, \bm{\theta})$, as a sum of $N$ Gaussian potentials:
-\begin{equation}\label{eq:V-param}
-V_N(x,\{\bm{A},\bm{\mu},\bm{\sigma} \}) = \sum_{i=1}^{N}\frac{A_i}{\sqrt{2\pi\sigma_i^2}}\exp\left[{-\frac{(x-\mu_i)^2}{2\sigma_i^2}}\right],
+We find an appropriate link potential $V_0(x) \equiv V(x,\bm{\theta}^*)$ by performing a global search over a family of possible potentials $V(x,\bm{\theta})$ for the parameters $\bm{\theta}^*$ that reduce the $k$-integrated squared error between the desired transmission-momentum profile $T_0(k)$ and the actual profile $T_{\bm\theta}(k)$ determined by a sample potential $V(x, \bm{\theta})$. Concretely, we minimize the cost
+\begin{equation}\label{eq:cost1}
+  J_{\bm{\theta}} = \sum_kw_k\left|T_0(k) - T_{\mathbf{\theta}}(k)\right|^2,
 \end{equation}
-where $A_j\equiv(\bm{A})_j$, $\mu_j\equiv(\bm{\mu})_j$, and $\sigma_j\equiv(\bm{\sigma})_j$ are the amplitude, mean, and standard deviation for the $j^{\mathrm{th}}$ Gaussian. It is necessary to enforce constraints on these parameters to both improve convergence and to ensure that solutions satisfy the experimental requirements. Table~\ref{tab:constraints} shows the explicit parameter constraints that we enforce  during minimization. 
+where the $k$-integral has been approximated (up to a constant factor) by a sum over a discrete set of momentum values, and $w_k$ is the weight given to momentum $k$. The weights are chosen to emphasize regions of $k$ during the minimization. For instance, when trying to create a ``comb'' potential that forbids transmission for all $k$ except in the neighborhood of a chosen value $k_0$, then it would be appropriate to increase the weights in the region of $k_0$. We find that results are sensitive to the choice of $w_k$, and some trial and error was required to get acceptable potentials. 
+
+With the goal of discovering experimentally viable solutions, we parameterize the family of link potentials $V(x, \bm{\theta})$, as a sum of $N$ Gaussian potentials each of the form
+\begin{equation}\label{eq:V-param}
+V_i(x; A_i, \mu_i, \sigma_i) = \frac{A_i}{\sqrt{2\pi\sigma_i^2}}\exp\left[{-\frac{(x-\mu_i)^2}{2\sigma_i^2}}\right],
+\end{equation}
+While minimizing Eq.~\eqref{eq:cost1}, we enforce the parameter constraints listed in Table \ref{tab:constraints}. In addition to these explicit constraints on the parameters, we enforce an implicit constraint by requiring that the link potential should not extend beyond the region of potential support $x\in[-x_0,x_0]$. To accomplish this, we minimize the augmented cost
+\begin{equation}\label{eq:cost2}
+  J_{\bm{\theta}}^{\mathrm{aug}} = J_{\bm{\theta}} + \alpha \sum_i^N\int\limits_{|x|>x_0}dx\,|V_i(x; A_i,\mu_i,\sigma_i)|^2,
+\end{equation}
+where $\alpha$ is a tuning parameter chosen to make the added term of a similar order to $J_{\mathbf{\theta}}$ in the scenario that the potential extends outside the support region. Beyond this, we find that results are not very sensitive to the choice of $\alpha$ probably due to the very short tails of the Gaussian potentials. The integral in Eq.~\eqref{eq:cost2} evaluates to the complementary error function. The full form is given in the suppl.~material. 
+
+For a choice of $\bm{\theta}$ (and hence $V(x;\bm{\theta})$), we solve for $T_{\bm{\theta}}(k)$ by integrating Schr{\"o}dinger's equation across the region of the potential and calculating the ratio of the transmitted to the incident flux. In order to do this efficiently, we approximate the integral as a banded linear system of equations solvable in $O(M)$ time where $M$ is the number of $x$-steps. Using these techniques we are able to evaluate the transmission coefficient x thousand times per second on a 7th generation Intel Core i7 processor under the conditions used in our tests. 
+
+ We minimize $J_{\bm{\theta}}^{\mathrm{aug}}$ for $\bm{\theta}^*$ using the global optimization routine called Differential Evolution (DE) \cite{original DE paper}. This evolutionary-based search algorithm is suitable given the non-convex (multiple local minima) nature of the optimization problem. Despite its simplicity, DE does a good job of balancing exploration of the space of link potentials against the need to efficiently learn from each sample with little tuning of the model settings. Emperically, we found DE to perform much better than several other approaches including random search, Nelder-Mead, and Simulated Annealing \cite{Tests performed using mathematica}.
 
 \begin{table}[t]
   \renewcommand*{\arraystretch}{1.4}
@@ -78,11 +88,7 @@ where $A_j\equiv(\bm{A})_j$, $\mu_j\equiv(\bm{\mu})_j$, and $\sigma_j\equiv(\bm{
   \label{tab:constraints}
 \end{table}
 
-In addition to explicit constraints on the parameters, we inforce an implicit constraint by requireing that the link potential should not extend beyond the region  of potential support $x\in[-x_0,x_0]$. This we do by adding to the cost function a term $J_{\mathrm{boundary}}$ that grows with the area of the potential outside the support region. The complete definition of the cost function is given in suppl.~material. 
-
-
-
- It is clear that by changing the potential in the link we can change the flux. Let us describe how we compute potentials to create desirable fluxes. In this section we discuss this.  Describe the procedure here: We set the desirable momentum profile, guess a potential, calculate the corresponding transmission coefficient, minimize the parameters. 
+Figure \ref{fig:method_examples} demonstrates the application of the procedure described above to three scenarios: the comb potential, evaporative cooling, and anti-evaporative cooling. Each figure shows the resulting link potential $V_0(x)$ along with the target and actual momentum-transmission profiles. 
 
 {\it Figure 2: Examples of a few profiles that can be created: comb, evaporative, anti-evaporative etc. In the insets are the corresponding potentials.}
 
