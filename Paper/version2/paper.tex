@@ -3,6 +3,7 @@
 \usepackage{epsfig}
 \usepackage{color}
 \usepackage{array}
+\usepackage{subcaption}
 \usepackage{graphicx}
 \usepackage{bm}
 \usepackage{epstopdf}
@@ -88,9 +89,35 @@ For a choice of $\bm{\theta}$ (and hence $V(x;\bm{\theta})$), we solve for $T_{\
   \label{tab:constraints}
 \end{table}
 
-Figure \ref{fig:method_examples} demonstrates the application of the procedure described above to three scenarios: the comb potential, evaporative cooling, and anti-evaporative cooling. Each figure shows the resulting link potential $V_0(x)$ along with the target and actual momentum-transmission profiles. 
+\subsection{Single-comb transport profile}
+To illustrate the method described above we optimize for a single-comb transport profile sharply-peaked near $k=1$ ($\hbar=2m=1$). For our target transport profile, we use a Lorentz distribution peaked at $k=1$ and with a small HWHM (see Figure~\ref{fig:method_illustration}, top). For the constraints shown in Table~\ref{tab:constraints}, we use $\sigma_{\mathrm{min}}=0.X$, $\sigma_{\mathrm{max}}=Y.Y$, $A_{\mathrm{min}}=0.X$, and $A_{\mathrm{max}}=Y.Y$. We simplify the optimization by searching over two-Gaussian link-potentials with equal amplitudes and widths. The resulting optimization has three parameters. Despite the few parameters, the cost function for this optimization has many local minima corresponding to the many ways that a resonance state can be placed near the scattering energy $k^2$. So, while this is a very simple example, it still requires a method for globally searching the space of link potentials.
 
-{\it Figure 2: Examples of a few profiles that can be created: comb, evaporative, anti-evaporative etc. In the insets are the corresponding potentials.}
+Figure \ref{fig:method_illustration} shows the link potential and transport profile resulting for the single-comb optimization. The solution does a good job of suppressing transport except near $k=1$ as set by our Lorentz target profile and near $k=2$ resulting from a second resonance in the scattering potential. This additional resonance need not be a problem if the scattering atoms are sourced from a thermal reservoir with sufficiently low population near $k=2$. The two-Gaussian solution struggles to reproduce the width of the Lorentz target profile (see inset). Though we have not demonstrated that the solution shown in Fig.~\ref{fig:method_illustration} corresponds to a global minimum, this failure to reproduce the width may result from insufficient freedom in the family of constrained two-Gaussian potentials.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{figure}
+   \includegraphics[width=1\linewidth]{figures/plot_transport_profiles.pdf}
+   \includegraphics[width=1\linewidth]{figures/plot_link_potential.pdf}
+ \caption[Single comb link potential]{Two-Gaussian solution for the $k=1$ comb transport profile. The top figure shows the target profile (dot-dashed, red) used during optimization and the actual profile resulting from the optimization procedure. The inset is a zoomed-in view of the region around the peak near $k=1$. The bottom figure shows the optimal link potential $V(x)$.}
+ \label{fig:method_illustration}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+It may be experimentally problematic if the transport profile shown in Figure \ref{fig:method_illustration} were highly sensitive to the potential parameters. Such sensitivity would require extremely fine control over the laser amplitudes, positions, and widths in order to produce the desired potential. To test this sensitivity, we generate 200 perturbed potentials by varying the six parameters of the two-Gaussian solution shown in Fig.~\ref{fig:method_illustration} by a random-normal multiplicative factor with mean 1 and standard deviation 0.05. The distributions of the peak positions and heights for the 200 perturbed potentials are shown in Figure \ref{fig:sensitivity}. Both the peak positions, $k_0$, and the peak heights, $T_0$, undergo perturbations on the scale of the $5\%$  potential perturbations suggesting that transport properties are relatively insensitive to slight errors in the potential parameters. When optimizing with 3- or 4-Gaussian potentials, we found that solutions tended to be extremely sensitive to the potential parameters. If such potentials are needed to produce the desired transport profile, it may be possible to further augment the cost function in order to preference solutions that are less sensitive to potential perturbations.
+
+Though we have demonstrated our optimization method in a very simple scenario, it is possible to apply this technique to more complicated scenarios such as double-comb or step transport profiles for various experimental scenarios. We find that these more complicated transport profiles require more than two Gaussian potentials and that the solutions using the procedure we describe are highly-sensitive to the potential parameters. We leave the thorough exploration of these ideas to future work. In the next section, we discuss a possible experimental application of the single-comb solution. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{figure}
+   \includegraphics[width=1\linewidth]{figures/plot_sensitivity.pdf}
+ \caption[Sensitivity Plot]{Sensitivity of the transport profile to perturbations of the potential parameters. Shown are the distributions of the peak position $k_0$ (main graph) and peak height $T_0$ (inset) for 200 potentials with parameters randomly perturbed on the order of $5\%$ from the optimized potential shown in Fig.~\ref{fig:method_illustration}. }
+ \label{fig:sensitivity}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \section{Illustration}
 
