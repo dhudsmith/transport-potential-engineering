@@ -55,7 +55,7 @@ Figure ~\ref{fig:Figure1} summarizes our proposal. Analogous to a quantum switch
 -\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}\psi+V_0(x)\psi=\frac{\hbar^2k^2}{2m}\psi,
 \label{eq:schr}
 \end{equation}
-where $m$ is the mass of a particle from the reservoir, $\frac{\hbar^2k^2}{2m}$ is its energy. The link potential $V_0(x)$ produces the transmission coefficient, $T_0(k)$. By carefully tuning $V_0(x)$ one produces a $T_0(k)$ that allows only particles with desired momenta to tunnel through the barrier into the `flux region' as required by the experimental application. Note that the momentum profile of the outgoing beam can be measured using a single-atom momentum resolution (e.g.,~\cite{jochim2018}), allowing one to confirm that the beam has the desired flux profile.
+where $m$ is the mass of a particle from the reservoir, $\frac{\hbar^2k^2}{2m}$ is its energy. The link potential $V_0(x)$ produces the transmission coefficient, $T_0(k)$. By carefully tuning $V_0(x)$ one produces a $T_0(k)$ that allows only particles with desired momenta to tunnel through the barrier into the flux region as required by the experimental application. Note that the momentum profile of the outgoing beam can be measured using a single-atom momentum resolution (e.g.,~\cite{jochim2018}), allowing one to confirm that the beam has the desired flux profile.
 
 In this Letter,  we discuss how to determine an appropriate $V_0(x)$ for a given desired flux profile $T_0(k)$. Furthermore, we briefly discuss the 1D Bose polaron problem as a possible application of cold-atom beams. 
 
@@ -66,7 +66,7 @@ In this Letter,  we discuss how to determine an appropriate $V_0(x)$ for a given
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}
 \centerline{\includegraphics[scale=0.3]{figure1new.pdf}}
-\caption{ \textcolor{red}{The link potential looks a bit unnatural to me. The odd part is the kinks where the middle potential joins its neighbors. Can we make this smooth? Summing three gaussians and adding an intercept should work, yes?} An illustration of the proposal: A reservoir that contains particles of various momenta is connected to an external link potential. The potential filters out the desired momenta, and the particles in the `flux region' have a known momentum distribution -- here, the distribution is non-zero only in the neighborhood of a chosen momentum. The link potential is a narrow-band filter.
+\caption{ \textcolor{red}{The link potential looks a bit unnatural to me. The odd part is the kinks where the middle potential joins its neighbors. Can we make this smooth? Summing three gaussians and adding an intercept should work, yes?} An illustration of the proposal: A reservoir that contains particles of various momenta is connected to an external link potential. The potential filters out the desired momenta, and the particles in the flux region have a known momentum distribution -- here, the distribution is non-zero only in the neighborhood of a chosen momentum. The link potential is a narrow-band filter.
 }
 \label{fig:Figure1}
 \end{figure}
@@ -173,28 +173,9 @@ Though we have demonstrated our optimization method in a very simple scenario, i
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-{\it Application. --} A Bose or Fermi gas (see Fig.~\ref{fig:Figure1}) can be placed in the `flux region'
-to study quantum environments with mobile neutral impurities -- an important research venue promoted by cold-atom 
-simulators~\cite{zwierlein2009,salomon2009,grimm2012, widera2012, catani2012, fukuhara2013, hu2016,arlt2016,zaccanti2017}.
-With our proposal it is possible to investigate dynamics of impurities that initially have 
-a known momentum profile, thus allowing for a direct measurement of the effective mass and 
-the critical momentum. A detailed discussion of these concepts is beyond the scope 
-of the Letter. Still, we find it useful to briefly explain them in connection to our proposal. 
-To this end, we consider a degenerate one-dimensional Bose gas with an impurity of momentum $P$.
-To model this system, we employ a non-linear Schr{\"o}dinger equation
-for a Bose gas with an impurity atom~[10]. This equation was solved analytically
-in the context of a nonlinear flow past an obstacle~\cite{hakim1997}, 
-which allows us to work out all properties of the dressed particle in a simple manner; 
-note that this (or a similar) non-linear equation has been discussed in Refs.~\cite{kamenev2016, volosniev2017, mistakidis2018, dehkharghani2018, pastukhov2018},
-see also~\cite{sacha2006, catani2012, kain2016, parisi2017,grusdt2017, pastukhov2017, kain2018} for other relevant studies. 
+{\it Application. --} A Bose or Fermi gas can be placed in the flux region  (see Fig.~\ref{fig:Figure1}) to study quantum environments with neutral, mobile impurities -- an important research venue promoted by cold-atom simulators~\cite{zwierlein2009,salomon2009,grimm2012, widera2012, catani2012, fukuhara2013, hu2016,arlt2016,zaccanti2017}. With our proposal it is possible to investigate dynamics of impurities that initially have a known momentum profile, thus allowing for a direct measurement of the effective mass and the critical momentum. A detailed discussion of these concepts is beyond the scope of the Letter. Still, we find it useful to briefly explain them in connection to our proposal. To this end, we consider a degenerate one-dimensional Bose gas with an impurity of momentum $P$. To model this system, we employ a non-linear Schr{\"o}dinger equation for a Bose gas with an impurity atom~[10]. This equation was solved analytically in the context of a nonlinear flow past an obstacle~\cite{hakim1997}, which allows us to work out all properties of the dressed particle in a simple manner; note that this (or a similar) non-linear equation has been discussed in Refs.~\cite{kamenev2016, volosniev2017, mistakidis2018, dehkharghani2018, pastukhov2018}, see also~\cite{sacha2006, catani2012, kain2016, parisi2017,grusdt2017, pastukhov2017, kain2018} for other relevant studies. 
 
-The lowest energy state of the non-linear Schr{\"o}dinger equation with a given $P$ is a combination of two solitons. 
-They make a dissipationless defect in the Bose gas, which accompanies the impurity. The corresponding energy 
-is given by $E\simeq E_B+\epsilon+P^2/(2m_{\mathrm{eff}})$, where $E_B$ is the energy of the gas without an impurity, 
-$\epsilon$ is the self-energy of the dressed particle, and $m_{\mathrm{eff}}$ is its effective mass. The solution is steady only 
-for $P<P_c$; impurities with $P>P_c$ generate grey solitons (cf.~\cite{hakim1997}). 
-Note that quantum fluctuations lead to a finite dissipation (cf.~\cite{astrakharchik2004,sykes2009,Cherny2012})
-even for $P<P_c$. We do not consider this effect as it does not change our qualitative presentation.
+The lowest energy state of the non-linear Schr{\"o}dinger equation with a given $P$ is a combination of two solitons. They make a dissipationless defect in the Bose gas, which accompanies the impurity. The corresponding energy is given by $E\simeq E_B+\epsilon+P^2/(2m_{\mathrm{eff}})$, where $E_B$ is the energy of the gas without an impurity, $\epsilon$ is the self-energy of the dressed particle, and $m_{\mathrm{eff}}$ is its effective mass. The solution is steady only for $P<P_c$; impurities with $P>P_c$ generate grey solitons (cf.~\cite{hakim1997}). Note that quantum fluctuations lead to a finite dissipation (cf.~\cite{astrakharchik2004,sykes2009,Cherny2012}) even for $P<P_c$. We do not consider this effect as it does not change our qualitative presentation.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -212,16 +193,15 @@ $c$ is the speed of sound in the gas and $g$ is the boson-impurity interaction s
 
 
 
-To measure $\epsilon, m_{\mathrm{eff}}$ and $P_c$, one shall use a NBP filter to create a flux of particles 
-with momenta close to $P$. The value of $b$ must be chosen such that the current is weak, i.e., 
-there is a negligible probability to find two flux particles at distances smaller than the healing 
-length of the Bose gas. Then the impurity-in-a-gas picture is applicable by construction. 
-For the sake of argument, we assume that initially the impurity is in a hyperfine state 
+To measure $\epsilon, m_{\mathrm{eff}}$ and $P_c$, one can use a narrow band-pass filter as shown in Fig.~\ref{fig:method_illustration} to create a flux of particles with momenta close to $P$. The value of $b$ must be chosen such that the current is weak, i.e., there is a negligible probability to find two flux particles at distances smaller than the healing 
+length of the Bose gas. \textcolor{red}{It might be good to state here how this be accomplished using the above framework. For example, using a target profile with very narrow width.} Then the impurity-in-a-gas picture is applicable by construction. 
+For simplicity, we assume that initially the impurity is in a hyperfine state 
 that does not interact with the Bose gas. To transfer to a strongly interacting hyperfine state 
 one has to deposit enough energy to compensate for the interaction effects; see Fig.~\ref{fig:Figure3}{\bf a)}. 
 Therefore, the radio-frequency responce (e.g., the transferred fraction) at different momenta directly measures 
-the self-energy and effective mass of the polaron;
-such a measurement would be similar to the one in a recent experiment with a three-dimensional Fermi polaron~\cite{zaccanti2017}, but 
+the self-energy and effective mass of the polaron.
+
+A measurement such as this would be similar to the measurement in a recent experiment with a three-dimensional Fermi polaron~\cite{zaccanti2017} but 
 with a superior control over the impurity momentum. 
 Moreover, the overlap between the non-interacting and interacting states, i.e., the residue, can
 be measured, allowing one to test recent theoretical calculations~\cite{volosniev2017, pastukhov2017,grusdt2017,pastukhov2018}
@@ -236,16 +216,7 @@ $P_c$ is limited by the timescale for a two-body exchange.
 
 
 
-{\it Summary. --}  We proposed to engineer streams of particles with desired momenta profiles
-using a filter potential connected to a reservoir; see Fig.~\ref{fig:Figure1}.
-A stream can be used to probe cold-atom systems. It can also be used for quantum simulations, as we illustrated 
-with a narrow band-pass filter and a one-dimensional Bose gas in the `flux' region. 
-Polarons in two-, three- and mixed-dimensional geometries can be created similarly. 
-{\color{red} Time-dependent driving?} 
-
-
-
-
+{\it Summary. --}  We outline a proceeder for engineering beams of particles with desired momentum profiles using a filter potential connected to a reservoir (see Fig.~\ref{fig:Figure1}). Such a beam can be used to probe cold-atom systems. It can also be used for quantum simulations, as we illustrated with a narrow band-pass filter and a one-dimensional Bose gas in the flux region. Polarons in two-, three- and mixed-dimensional geometries can similarly be created. {\color{red} Time-dependent driving?} 
 
 
 
