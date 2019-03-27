@@ -14,10 +14,13 @@
 \DeclareMathOperator\erfc{erfc}
 
 
+%\usepackage[a4paper, total={6in, 8in}]{geometry}
+
+%\renewcommand{\baselinestretch}{2.2}
 
 \begin{document}
 
-\title{Engineering momentum profiles of cold-atom {\color{blue} streams}}
+\title{Engineering momentum profiles of cold-atom beams}
 
 \author{D~Hudson \surname{Smith}}
 \affiliation{Clemson University, Clemson, South Carolina 29634, USA}
@@ -41,12 +44,12 @@ Further, we discuss a topical application, in which a NBP filter is integrated t
 
 
 {\it Introduction. --}   
-In this Letter we discuss a procedure for creating cold-atom streams with momentum transport profiles that can be selected for the matter at hand.
-Such streams would enable novel scattering experiments with quantum gases. In particular, 
+In this Letter we discuss a procedure for creating cold-atom beams with momentum transport profiles that can be selected for the matter at hand.
+Such beams would enable novel scattering experiments with quantum gases. In particular, 
 they could be used to measure parameters that define
-physics of cold-atoms systems such as such few-body parameters like the
-scattering length or three-body parameter~\cite{braaten2006, bloch2008} or
-many-body effects like the self-energy or the effective mass of a polaron~\cite{massignan2014, schmidt2018}.
+few- and many-body physics of cold-atoms systems, e.g., the
+scattering length, three-body parameter~\cite{braaten2006, bloch2008} or
+the self-energy and the effective mass of a polaron~\cite{massignan2014, schmidt2018}.
 
 
 
@@ -55,7 +58,7 @@ Figure ~\ref{fig:Figure1} summarizes our proposal. Analogous to a quantum switch
 -\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}\psi+V_0(x)\psi=\frac{\hbar^2k^2}{2m}\psi,
 \label{eq:schr}
 \end{equation}
-where $m$ is the mass of a particle from the reservoir, $\frac{\hbar^2k^2}{2m}$ is its energy. The link potential $V_0(x)$ produces the transmission coefficient, $T_0(k)$. By carefully tuning $V_0(x)$ one produces a $T_0(k)$ that allows only particles with desired momenta to tunnel through the barrier into the flux region as required by the experimental application. Note that the momentum profile of the outgoing beam can be measured using a single-atom momentum resolution (e.g.,~\cite{jochim2018}), allowing one to confirm that the beam has the desired flux profile.
+where $m$ is the mass of a particle from the reservoir, $\frac{\hbar^2k^2}{2m}$ is its energy. The link potential $V_0(x)$ produces the transmission coefficient, $T_0(k)$. By carefully tuning $V_0(x)$ one produces a $T_0(k)$ that allows only particles with desired momenta to tunnel through the barrier into the flux region as required by the experimental application. Note that the momentum profile of the outgoing beam can be measured using single-atom momentum resolution techniques (e.g.,~\cite{jochim2018}), allowing one to confirm that the beam has the desired flux profile.
 
 In this Letter,  we discuss how to determine an appropriate $V_0(x)$ for a given desired flux profile $T_0(k)$. Furthermore, we briefly discuss the 1D Bose polaron problem as a possible application of cold-atom beams. 
 
@@ -65,8 +68,8 @@ In this Letter,  we discuss how to determine an appropriate $V_0(x)$ for a given
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}
-\centerline{\includegraphics[scale=0.3]{figure1new.pdf}}
-\caption{ \textcolor{red}{The link potential looks a bit unnatural to me. The odd part is the kinks where the middle potential joins its neighbors. Can we make this smooth? Summing three gaussians and adding an intercept should work, yes?} An illustration of the proposal: A reservoir that contains particles of various momenta is connected to an external link potential. The potential filters out the desired momenta, and the particles in the flux region have a known momentum distribution -- here, the distribution is non-zero only in the neighborhood of a chosen momentum. The link potential is a narrow-band filter.
+\centerline{\includegraphics[scale=0.4]{figure1new.pdf}}
+\caption{An illustration of the proposal: A reservoir that contains particles of various momenta is connected to an external link potential. The potential filters out the desired momenta, and the particles in the flux region have a known momentum distribution -- here, the distribution is non-zero only in the neighborhood of a chosen momentum. The link potential is a narrow band-pass filter.
 }
 \label{fig:Figure1}
 \end{figure}
@@ -75,9 +78,9 @@ In this Letter,  we discuss how to determine an appropriate $V_0(x)$ for a given
 {\it Procedure for Finding a Link Potential. --} 
 We find an appropriate link potential $V_0(x) \equiv V(x,\bm{\theta}^*)$ by performing a global search over a family of possible potentials $V(x,\bm{\theta})$ for the parameters $\bm{\theta}^*$ that reduce the $k$-integrated squared error between the desired transmission-momentum profile $T_0(k)$ and the actual profile $T_{\bm\theta}(k)$ produced by a sample potential $V(x, \bm{\theta})$. Concretely, we minimize the cost
 \begin{equation}\label{eq:cost1}
-  J_{\bm{\theta}} = \sum_kw_k\left|T_0(k) - T_{\bm{\theta}}(k)\right|^2,
+  J_{\bm{\theta}} = \sum_{0<k<k_F} w_k\left|T_0(k) - T_{\bm{\theta}}(k)\right|^2,
 \end{equation}
-where the $k$-integral has been approximated (up to a constant factor) by a sum over a discrete set of momentum values, and $w_k$ is the weight given to momentum $k$. The weights are chosen to emphasize or de-emphasize special regions of $k$ during the minimization. For instance, for a narrow band-pass filter that forbids transmission for all $k$ except in the neighborhood of a chosen value $k_0$ (see Figs.~\ref{fig:Figure1} and~\ref{fig:method_illustration}), it is appropriate to increase the weights in the region of $k_0$. The convergence of our approach is somewhat sensitive to the choice of $w_k$.
+where the $k$-integral has been approximated (up to a constant factor) by a sum over a discrete set of momentum values, the interval of integration is $[0,k_F]$, and $w_k$ is the weight given to momentum $k$. The weights are chosen to emphasize or de-emphasize special regions of $k$ during the minimization. For instance, for a narrow band-pass filter that forbids transmission for all $k$ except in the neighborhood of a chosen value $k_0$ (see Figs.~\ref{fig:Figure1} and~\ref{fig:method_illustration}), it is appropriate to increase the weights in the region of $k_0$. The convergence of our approach is somewhat sensitive to the choice of $w_k$.
 
 We developed a strategy for choosing the weights that takes into account the following considerations: {\it i)} the transport coefficient is zero for $k=0$ 
 (there can be no transmission for $k=0$ and $V\neq 0$ in 1D), so the weight can be smaller for small $k$, {\it ii)} the transport coefficient approaches 1 for large $k$ so higher weights are required in the large-$k$ region if one wishes to suppress flux at large $k$, and {\it iii)} to reproduce narrow features in the target transport profile, it may be helpful to increase the weight in the $k$-region of these features. Following these principles, we arrive at the following formula for the weight function:
@@ -102,7 +105,7 @@ To accomplish this, we minimize the boundary-augmented cost function
   J_{\bm{\theta}}^{\mathrm{aug}} = J_{\bm{\theta}} + \alpha \sum_{i=1}^N\int\limits_{|x|>x_0}dx\,|V_i(x; A_i,\mu_i,\sigma_i)|^2,
 \end{equation}
 where $\alpha$ is a tuning parameter chosen empirically to aid in convergence. We find that results are not very sensitive to the choice of $\alpha$ probably due to the very short tails of the Gaussian potentials. The integral in Eq.~\eqref{eq:cost2} evaluates to the complementary error function. The full form of $J_{\bm{\theta}}^{\mathrm{aug}}$ is given in Ref.~\footnote{See the Supplementary Material for the full form of $J_{\bm{\theta}}^{\mathrm{aug}}$ and 
-for the solution to the non-linear Schr{\"o}dinger equation for the impurity-(Bose gas) problem.}.
+for the solution to the non-linear Schr{\"o}dinger equation for the impurity-(Bose gas) problem. The Supplementary Material includes Refs.~[39,40]}.
 
 \begin{table}[t]
   \renewcommand*{\arraystretch}{1.4}
@@ -127,7 +130,7 @@ a banded linear system of equations solvable in $O(M)$ time where $M$ is the num
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \begin{figure}
    \includegraphics[width=1\linewidth]{figures/plot_transport_profiles_with_inset.pdf}
- \caption[Narrow band-pass filter link potential]{A two-Gaussian solution for the narrow band-pass filter transport profile. The main figure shows the target profile (dot-dashed, red) used during optimization (see Eq.~(\ref{eq:Ttarget})) and the actual transport profile resulting from the optimization procedure (solid, blue). The inset figure shows the optimal link potential $V(x, \bm{\theta^*})$. {\color{red} bold font in the inset}}
+ \caption[Narrow band-pass filter link potential]{A two-Gaussian solution for the narrow band-pass filter transport profile. The main figure shows the target profile (dot-dashed, red) used during optimization (see Eq.~(\ref{eq:Ttarget})) and the actual transport profile resulting from the optimization procedure (solid, blue). The inset figure shows the optimal link potential $V(x, \bm{\theta^*})$.}
  \label{fig:method_illustration}
 \end{figure}
 
@@ -137,7 +140,7 @@ We minimize $J_{\bm{\theta}}^{\mathrm{aug}}$ for $\bm{\theta}^*$ using the globa
 
 
 
-{\it Narrow band-pass filter (NBP) transport profile. --}
+{\it Narrow band-pass (NBP) filter transport profile. --}
 To illustrate the method described above we optimize for a NBP filter transport profile sharply-peaked near $k=k_0$. 
 For our target transport profile, we use a Lorentz profile~(see Figure~\ref{fig:method_illustration})
 \begin{equation}\label{eq:Ttarget}
@@ -151,14 +154,14 @@ for a one-body tunneling. We set $b=0.03 k_0$, which for a reasonable assumption
 $\hbar^2k_0^2/(2m)=k_B\times \mu$K, where $k_B$ is the Boltzmann constant leads to 
 the time scale associated with the resonance width $\frac{2m}{\hbar b^2}\sim 10$ms.
 
- For the constraints shown in Table~\ref{tab:constraints}, we use $\sigma_{\mathrm{min}}=0.2$, $\sigma_{\mathrm{max}}=3$, $A_{\mathrm{min}}=5$, and $A_{\mathrm{max}}=30$. We further simplify the optimization by searching over two-Gaussian link-potentials with equal amplitudes and widths. We anticipate that this potential might be the easiest to realize in the laboratory. Moreover, it allows us to give a physical interpretation in terms of quasi-discrete energy levels supported by the link.  Even though we work here with a very simple example with only three unknown parameters, a method for globally searching the space of possible link potentials is still required, because the cost function for the optimization has many local minima corresponding to the many ways to produce a resonance state near the scattering energy~$k_0^2$. Moreover this global search technique extends to more complicated transport profiles which necessitate more complicated families of link potentials.
+ For the constraints shown in Table~\ref{tab:constraints}, we use $\sigma_{\mathrm{min}}=0.2$, $\sigma_{\mathrm{max}}=3$, $A_{\mathrm{min}}=5$, and $A_{\mathrm{max}}=30$. We set $k_F=2$. We further simplify the optimization by searching over two-Gaussian link-potentials with equal amplitudes and widths. We anticipate that this potential might be the easiest to realize in the laboratory. Moreover, it allows us to give a physical interpretation in terms of quasi-discrete energy levels supported by the link.  Even though we work here with a very simple example with only three unknown parameters, a method for globally searching the space of possible link potentials is still required, because the cost function for the optimization has many local minima corresponding to the many ways to produce a resonance state near the scattering energy~$k_0^2$. Moreover this global search technique extends to more complicated transport profiles which necessitate more complicated families of link potentials.
 
-Figure \ref{fig:method_illustration} shows the link potential and transport profile resulting for the NBP filter optimization. The solution does a good job of suppressing transport except near $k=1$ as set by our Lorentz target profile and near $k=2$ resulting from a second resonance in the scattering potential. This additional resonance need not be a problem if the atoms are sourced from a thermal reservoir with sufficiently low population near $k=2$~\footnote{In general, one needs to include the distribution of particles over the energy in the reservoir, $n(k)$,
-in the cost function. To this end, one might simply multiply in Eq.~(\ref{eq:cost1}) $T_{\bm{\theta}}(k)$ by $n(k)$, leaving the rest as is.
-The function $n(k)$ is determined by the Bose-Einstein or Fermi-Dirac distributions, temperature and the shape of the trap. Current Eq.~(\ref{eq:cost1}) assumes a Fermi gas 
-at zero temperature in a harmonic trap, i.e., $n(k<k_F)=1$ and zero otherwise.}.
+Figure \ref{fig:method_illustration} shows the link potential and transport profile resulting for the NBP filter optimization. The solution does a good job of suppressing transport except near $k=1$ as set by our Lorentz target profile and near $k=2$ resulting from a second resonance in the scattering potential. This additional resonance need not be a problem if the atoms are sourced from a thermal reservoir with sufficiently low population near $k=2$~\footnote{For a reservoir at a finite temperature it is beneficial to include the energy distribution, $n(k)$,
+in the cost function. To this end, one should simply convolute $T_{\bm{\theta}}(k)$ in Eq.~(\ref{eq:cost1}) with $n(k)$. 
+The function $n(k)$ is determined by the Bose-Einstein or Fermi-Dirac distributions, temperature and the shape of the trap. For simplicity, 
+we assume in current Eq.~(\ref{eq:cost1}) a one-dimensional Fermi gas at zero temperature in a harmonic trap, i.e., $n(k<k_F)=1$ and zero otherwise.}.
  
-It may be experimentally problematic if the transport profile shown in Fig.~\ref{fig:method_illustration} were highly sensitive to the potential parameters. Such sensitivity would require extremely fine control over the laser amplitudes, positions, and widths in order to produce the desired transport profile. To test this sensitivity, we generate 200 perturbed potentials by varying the six parameters of the two-Gaussian solution shown in Fig.~\ref{fig:method_illustration} by a random-normal multiplicative factor with mean 1 and standard deviation 0.05. The distributions of the peak positions and heights for the 200 perturbed potentials are shown in Fig.~\ref{fig:sensitivity}. Both the peak positions, $k_{\mathrm{max}}$, and the peak heights, $T_{\mathrm{max}}$, undergo perturbations on the scale of the $5\%$  potential perturbations suggesting that transport properties are relatively insensitive to slight errors in the potential parameters. 
+It may be experimentally problematic if the transport profile shown in Fig.~\ref{fig:method_illustration} were highly sensitive to the potential parameters. Such sensitivity would require extremely fine control over the laser amplitudes, positions, and widths in order to produce the desired transport profile. To test this sensitivity, we generate 2000 perturbed potentials by varying the six parameters of the two-Gaussian solution shown in Fig.~\ref{fig:method_illustration} by a random-normal multiplicative factor with mean 1 and standard deviation 0.05. The distributions of the peak positions and heights for the 2000 perturbed potentials are shown in Fig.~\ref{fig:sensitivity}. Both the peak positions, $k_{\mathrm{max}}$, and the peak heights, $T_{\mathrm{max}}$, undergo perturbations on the scale of the $5\%$  potential perturbations suggesting that transport properties are relatively insensitive to slight errors in the potential parameters. 
 
 Though we have demonstrated our optimization method in a very simple scenario, it is possible to apply this technique to more complicated scenarios such as a double band-pass filter or step transport profiles.  We discovered empirically that these more complicated transport profiles require more than two Gaussian potentials. In our explorations, we found that link potentials made of 3- or 4-Gaussian potentials tended to be more sensitive to random variations of potential parameters. If such potentials are needed to produce the desired transport profile, it may be possible to further augment the cost function in order to preference solutions that are less sensitive to potential perturbations. We leave the thorough exploration of these ideas to future work. In the next section, we discuss a possible experimental application of the NBP filter.
 
@@ -166,16 +169,16 @@ Though we have demonstrated our optimization method in a very simple scenario, i
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \begin{figure}
    \includegraphics[width=1\linewidth]{figures/plot_sensitivity.pdf}
- \caption[Sensitivity Plot]{Sensitivity of the transport profile to perturbations of the potential parameters. Shown are the distributions of the peak position $k_{\mathrm{max}}$ (main graph) and peak height $T_{\mathrm{max}}$ (inset) for 200 potentials with parameters randomly perturbed on the order of $5\%$ from the optimized potential presented in Fig.~\ref{fig:method_illustration}.}
+ \caption[Sensitivity Plot]{Sensitivity of the transport profile to perturbations of the potential parameters. Shown are the distributions of the peak position $k_{\mathrm{max}}$ (main graph) and peak height $T_{\mathrm{max}}$ (inset) for 2000 potentials with parameters randomly perturbed on the order of $5\%$ from the optimized potential presented in Fig.~\ref{fig:method_illustration}.}
  \label{fig:sensitivity}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-{\it Application. --} A Bose or Fermi gas can be placed in the flux region  (see Fig.~\ref{fig:Figure1}) to study quantum environments with neutral, mobile impurities -- an important research venue promoted by cold-atom simulators~\cite{zwierlein2009,salomon2009,grimm2012, widera2012, catani2012, fukuhara2013, hu2016,arlt2016,zaccanti2017}. With our proposal it is possible to investigate dynamics of impurities that initially have a known momentum profile, thus allowing for a direct measurement of the effective mass and the critical momentum. A detailed discussion of these concepts is beyond the scope of the Letter. Still, we find it useful to briefly explain them in connection to our proposal. To this end, we consider a degenerate one-dimensional Bose gas with an impurity of momentum $P$. To model this system, we employ a non-linear Schr{\"o}dinger equation for a Bose gas with an impurity atom~[10]. This equation was solved analytically in the context of a nonlinear flow past an obstacle~\cite{hakim1997}, which allows us to work out all properties of the dressed particle in a simple manner; note that this (or a similar) non-linear equation has been discussed in Refs.~\cite{kamenev2016, volosniev2017, mistakidis2018, dehkharghani2018, pastukhov2018}, see also~\cite{sacha2006, catani2012, kain2016, parisi2017,grusdt2017, pastukhov2017, kain2018} for other relevant studies. 
+{\it Application. --} A Bose or Fermi gas can be placed in the flux region  (see Fig.~\ref{fig:Figure1}) to study quantum environments with neutral, mobile impurities -- an important research venue promoted by cold-atom simulators~\cite{zwierlein2009,salomon2009,grimm2012, widera2012, catani2012, fukuhara2013, hu2016,arlt2016,zaccanti2017}. With our proposal it is possible to investigate dynamics of impurities that initially have a known momentum profile, thus allowing for a direct measurement of the effective mass and the critical momentum. A detailed discussion of these concepts is beyond the scope of the Letter. Still, we find it useful to briefly explain them in connection to our proposal. To this end, we consider a degenerate one-dimensional Bose gas with an impurity of momentum $P$. To model this system, we employ a non-linear Schr{\"o}dinger equation for a Bose gas with an impurity atom~[10]. This equation was solved analytically in the context of a nonlinear flow past an obstacle~\cite{hakim1997}, which allows us to work out all properties of the dressed particle in a simple manner; note that this (or a similar) non-linear equation has been discussed in Refs.~\cite{kamenev2016, volosniev2017, mistakidis2018, dehkharghani2018, pastukhov2018,pastukhov2019}, see also~\cite{sacha2006, catani2012, kain2016, parisi2017,grusdt2017, pastukhov2017, kain2018} for other relevant studies. 
 
-The lowest energy state of the non-linear Schr{\"o}dinger equation with a given $P$ is a combination of two solitons. They make a dissipationless defect in the Bose gas, which accompanies the impurity. The corresponding energy is given by $E\simeq E_B+\epsilon+P^2/(2m_{\mathrm{eff}})$, where $E_B$ is the energy of the gas without an impurity, $\epsilon$ is the self-energy of the dressed particle, and $m_{\mathrm{eff}}$ is its effective mass. The solution is steady only for $P<P_c$; impurities with $P>P_c$ generate grey solitons (cf.~\cite{hakim1997}). Note that quantum fluctuations lead to a finite dissipation (cf.~\cite{astrakharchik2004,sykes2009,Cherny2012}) even for $P<P_c$. We do not consider this effect as it does not change our qualitative presentation.
+The lowest energy state of the non-linear Schr{\"o}dinger equation with a given $P$ is a combination of two solitons. They make a dissipationless defect in the Bose gas, which accompanies the impurity. The corresponding lowest energy is given by $E\simeq E_B+\epsilon+P^2/(2m_{\mathrm{eff}})$, where $E_B$ is the energy of the gas without an impurity, $\epsilon$ is the self-energy of the dressed particle, and $m_{\mathrm{eff}}$ is its effective mass. The solution is stable only for $P<P_c$; impurities with $P>P_c$ generate grey solitons (cf.~\cite{hakim1997}). Note that quantum fluctuations lead to a finite dissipation (cf.~\cite{astrakharchik2004,sykes2009,Cherny2012}) even for $P<P_c$. We do not consider this effect as it does not change our qualitative presentation.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -193,8 +196,9 @@ $c$ is the speed of sound in the gas and $g$ is the boson-impurity interaction s
 
 
 
-To measure $\epsilon, m_{\mathrm{eff}}$ and $P_c$, one can use a narrow band-pass filter as shown in Fig.~\ref{fig:method_illustration} to create a flux of particles with momenta close to $P$. The value of $b$ must be chosen such that the current is weak, i.e., there is a negligible probability to find two flux particles at distances smaller than the healing 
-length of the Bose gas. \textcolor{red}{It might be good to state here how this be accomplished using the above framework. For example, using a target profile with very narrow width.} Then the impurity-in-a-gas picture is applicable by construction. 
+To measure $\epsilon, m_{\mathrm{eff}}$ and $P_c$, one can use a narrow band-pass filter as shown in Fig.~\ref{fig:method_illustration} to create a flux of particles with momenta close to $P$. 
+The width (value of $b$) of the target profile must be chosen such that the current is weak, i.e., there is a negligible probability to find two flux particles at distances smaller than the healing 
+length of the Bose gas. Then the impurity-in-a-gas picture is applicable by construction. 
 For simplicity, we assume that initially the impurity is in a hyperfine state 
 that does not interact with the Bose gas. To transfer to a strongly interacting hyperfine state 
 one has to deposit enough energy to compensate for the interaction effects; see Fig.~\ref{fig:Figure3}{\bf a)}. 
@@ -204,20 +208,21 @@ the self-energy and effective mass of the polaron.
 A measurement such as this would be similar to the measurement in a recent experiment with a three-dimensional Fermi polaron~\cite{zaccanti2017} but 
 with a superior control over the impurity momentum. 
 Moreover, the overlap between the non-interacting and interacting states, i.e., the residue, can
-be measured, allowing one to test recent theoretical calculations~\cite{volosniev2017, pastukhov2017,grusdt2017,pastukhov2018}
+be measured, allowing one to test different theoretical methods~\cite{volosniev2017, pastukhov2017,grusdt2017,pastukhov2018}
 that, while qualitatively agreeing on $m_{\mathrm{eff}}$ and $\epsilon$, contradict each other on the residue.
 Since the momentum of the impurity is known, not only the effective parameters but also the limits of applicability 
 of the polaron model will be seen in the radio-frequency responce, in particular, $P_c$.
 In Fig.~\ref{fig:Figure3}{\bf b)} we present $P_c$ for impurities whose mass $M$ is much larger than $m$~\cite{hakim1997}.
 For weak interactions ($g\to 0$) the critical momentum is determined by the speed of sound, $c$, in accordance with the Landau criterion.
-In the opposite limit, $g\to \infty$, the critical momentum goes to zero as $1/g$:   
+In the opposite limit, $g\to \infty$, the critical momentum goes to zero as $1/g$ (cf.~\cite{kamenev2016}):   
 $P_c$ is limited by the timescale for a two-body exchange. 
  
 
 
 
-{\it Summary. --}  We outline a proceeder for engineering beams of particles with desired momentum profiles using a filter potential connected to a reservoir (see Fig.~\ref{fig:Figure1}). Such a beam can be used to probe cold-atom systems. It can also be used for quantum simulations, as we illustrated with a narrow band-pass filter and a one-dimensional Bose gas in the flux region. Polarons in two-, three- and mixed-dimensional geometries can similarly be created. {\color{red} Time-dependent driving?} 
+{\it Summary. --}  We outline a procedure for engineering beams of particles with desired momentum profiles using a filter potential connected to a reservoir (see Fig.~\ref{fig:Figure1}). Such a beam can be used to probe cold-atom systems. It can also be used for quantum simulations, as we illustrated with a narrow band-pass filter and a one-dimensional Bose gas in the flux region. Polarons in two-, three- and mixed-dimensional geometries can similarly be created. 
 
+\vspace*{1em}
 
 
 \begin{acknowledgments}
@@ -225,178 +230,12 @@ We thank Peter Schlagheck for referring to~\cite{Schlagheck2005},
 and Joachim Brand and Volodymyr Pastukhov for useful discussions.
 A.~G.~V. gratefully acknowledges the support of the Humboldt Foundation and the Deutsche Forschungsgemeinschaft
 (VO 2437/1-1).
+
+\vspace*{1em}
+
+The authors contributed equally to this work.
 \end{acknowledgments}
 
-\widetext
-
-\section{Supplementary Material}
-
-\section{Polaron}
-
-{\color{blue} Discuss the residue} 
-There is a non-zero overlap between a free particle and the polaron state; see~\cite{volosniev2017} for $P=0$.
-
-To model one impurity atom that moves through a one-dimensional environment made of $N$ cold bosonic atoms, we employ the following Hamiltonian
-\begin{equation}
-H=-\frac{\hbar^2}{2m}\sum_{i=1}^N\frac{\partial^2}{\partial x_i^2}-\frac{\hbar^2}{2M}\frac{\partial^2}{\partial y^2}+\lambda \sum_{i>j=1}^N\delta(x_i-x_j)+g \sum_{i=1}^N \delta(x_i-y),
-\end{equation}
-where $M$ is the mass of the impurity atom, and $m$ is the mass of a bosonic particle. The position of the impurity is $y$, bosons are at the coordinates $\{x_i\}$. 
-We assume that the realistic boson-boson and boson-impurity interactions are well-described by the zero-range potentials of strengths $\lambda$ and $g$ respectively. 
-The reservoir by assumption is large, such that the dynamics can be described by the thermodynamic limit $N\to \infty$ with a given density $\rho$.
-To approach this limit, the periodic boundary conditions are used: The particles move in a ring of the circumference $L$, such that $0<x_i<L$ and $0<y<L$.
-We are interested in the limit $N(L)\to \infty$ with $\rho=\frac{N}{L}$.
-
-
-For $c=0$ the eigenstates can be written as $e^{2\pi i \frac{n_1x_1+\ldots+n_N x_N+my}{L}}$, where $n_1,\ldots,n_N$ and $m$ are arbitrary integrers. 
-For $c>0$ this basis set can be used to expand an eigenfunction of the Hamiltonian, $\Psi=\sum_{\{n_j\},m} a_{\{n_j\},m}e^{2\pi i \frac{\sum n_jx_j+my}{L}}$. 
-Because all interactions are pairwise, 
-the total (angular) momentum of the system must be conserved, and we write it as ${\cal P}=\frac{2\pi\hbar}{L}\left(\sum_{j} n_j+m\right)$.
-A conserved quantity (${\cal P}$) allows us to exclude one variable from the consideration. 
-We write the function $\Psi$ as $\Psi=e^{i \frac{{\cal P} y}{\hbar}}\sum_{\{n_j\},m} a_{\{n_j\},m}e^{2\pi i \frac{\sum n_jz_j}{L}}\equiv e^{i \frac{{\cal P} y}{\hbar}} \psi(z_1,...,z_N)$ 
-with $z_i=L\theta(y-x_i)+x_i-y$, where $\theta(x)$ is the Heaviside step function, i.e., 
-$\theta(x>0) = 1$ and zero otherwise. The variables $z_i$ are defined such that $0\leq z_i \leq L$ and the impurity is placed at $z=0$ ($z=L$). Now if we insert this 
-function into the Schr{\"o}dinger equation, $H\Psi=E\Psi$, we obtain the following equation for $\psi(0<z_i<L)$
-\begin{equation}
--\frac{\hbar^2}{2m}\sum_i\frac{\partial^2 \psi}{\partial z_i^2}-\frac{\hbar^2}{2M}\left(\sum_{i}\frac{\partial }{\partial z_i}\right)^2\psi
-+ i \frac{\hbar {\cal P}}{M}\sum_{i}\frac{\partial \psi}{\partial z_i}+\lambda \sum_{i>j}\delta(z_i-z_j)\psi=\left(E-\frac{{\cal P}^2}{2M}\right)\psi,
-\end{equation}
-which must be supplemented with the boundary conditions:
-\begin{equation}
-\psi(z_i=0)=\psi(z_i=L); \qquad \frac{\partial \psi}{\partial z_i}\bigg|^{z_i=0^+}_{z_i=L^-}= \frac{2 g \kappa}{\hbar^2} \psi(z_i=0),
-\end{equation}
-where $\kappa=mM/(m+M)$ is the reduced mass.
-
-By assumption the bosons interact weakly, such that the ansatz $\psi=\prod_i \Phi(z_i)$ can be used to approximate the system. 
-To minimize the expectation value of the Hamiltonian the function $\Phi(z)$ must satisfy the following non-linear Schr{\"o}dinger equation
-\begin{equation}
--\frac{\hbar^2}{2\kappa}\frac{\partial^2\Phi}{\partial z^2}+i\frac{\hbar {\cal P}}{M}\frac{\partial \Phi}{\partial z}
--i \frac{\hbar^2 (N-1) A}{M} \frac{\partial\Phi}{\partial z} + \lambda (N-1)|\Phi|^2\Phi=\mu \Phi,
-\end{equation}
-where $A=-i\int \Phi(x)^*\frac{\partial}{\partial x}\Phi(x)\mathrm{d}x$ defines the momentum of a boson, and $\mu$ is the Lagrange multiplier. 
-We rewrite this equation as
-\begin{equation}
--\frac{\partial^2\Phi}{\partial z^2}+i v \frac{\partial \Phi}{\partial z} + \tilde \lambda (N-1)|\Phi|^2\Phi=\tilde\mu\Phi,
-\label{eq:GPE_resc}
-\end{equation}
-where $\tilde\mu=\frac{2 \kappa \mu}{\hbar^2}$, $\tilde \lambda =\frac{2 \kappa \lambda}{\hbar^2}$, and 
-$v\equiv \frac{2 \kappa P}{M \hbar}$, where $P={\cal P}-\hbar A(N-1)$ defines the momentum of the impurity in the thermodynamic limit;
-note that because $A$ is determined by $P$, there is a unique value of ${\cal P}$ for a given $P_I$.
-The corresponding boundary conditions read
-\begin{equation}
-\Phi(z=0)=\Phi(z=L); \qquad \frac{\partial \Phi}{\partial z}\bigg|^{z=0^+}_{z=L^-}= \tilde g \Phi(0),
-\end{equation}
-where $\tilde g= \frac{2\kappa g}{\hbar^2}$. The non-linear equation~(\ref{eq:GPE_resc}) 
-has an analytic steady solution~\cite{hakim1997}, which determines the properties 
-of the polaron in our problem. Let us first consider the non-interacting case $\lambda=0$. In this case the solution for $v>0$ is~\cite{tsuzuki1971, ishikawa1980}
-\begin{equation}
-\Phi=\sqrt{\frac{\tilde \mu}{\tilde \lambda (N-1)}}\left(1-\beta \mathrm{sech}^2\left[\sqrt{\frac{\tilde\mu\beta}{2}}(z+z_0)\right]\right)^{\frac{1}{2}}e^{i\phi(z)},
-\label{eq:Phi_c0}
-\end{equation}
-\begin{equation}
-\phi(z)=-\pi\theta(z+z_0)+\mathrm{arctan}\left(\frac{\sqrt{\frac{2 v^2}{\tilde \mu}\beta}}{\mathrm{exp}\left[\sqrt{2\tilde \mu\beta}(z+z_0)\right]-2\beta+1}\right),
-\label{eq:phi_c0}
-\end{equation}
-where  $\beta=1- v^2/(2\tilde \mu)$, and $z_0$ is some parameter that determines the origin. It is worthwhile noting that the solution for $v<0$ is $\Phi^*$. 
-The solution from Eqs.~(\ref{eq:Phi_c0}) and~(\ref{eq:phi_c0}) is plotted in Fig.~\ref{fig:Fig1}; 
-for simplicity it is plotted in the interval $-L/2<z<L/2$, the region $0<z<L$ easily follows. By combining the solutions with $\pm z_0$ 
-one can construct a steady solution with a singularity at $z=0$~\cite{hakim1997}. Therefore, the `polaron' in this model is a superposition of two moving solitons. 
-In other words, the impurity creates a topological defect, which leads to a dissipationless propagation. 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- \begin{figure}
- \centerline{\includegraphics[scale=0.45]{figure1appendix.pdf}}
- \caption{Panel {\bf a)}: The density, $|\Phi|^2 \tilde \lambda (N-1)$, of the Bose gas for two different parameters $z_0$: $z_0=0.2$ (left red curve), $z_0=-0.2$ (right blue curve), 
- assuming that $\tilde \mu=1.6, v=0.3$ (everything is in units where $\rho=1$). 
- Note that the minimum of the density is at $-z_0$. The shaded area is a combination of the two solutions with the singularity at $z=0$. Panel {\bf b)}: The phase, $\phi$, of the Bose gas for the densities from {\bf a)}.}
- \label{fig:Fig1}
- \end{figure}
- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-We write the wave function for the polaron as
-\begin{equation}
-\Phi=\sqrt{\frac{\tilde \mu}{\tilde \lambda (N-1)}}\left(1-\beta \mathrm{sech}^2\left[\sqrt{\frac{\tilde\mu\beta}{2}}(z\pm z_0)\right]\right)^{\frac{1}{2}}e^{i\phi(z)},
-\end{equation}
-with 
-\begin{equation}
-\phi(z)=\delta \phi \theta(-z)+\mathrm{arctan}\left(\frac{\sqrt{\frac{2 v^2}{\tilde \mu}\beta}}{\mathrm{exp}\left[\sqrt{2\tilde \mu\beta}(z\pm z_0)\right]-2\beta+1}\right),
-\label{eq:phase_soliton}
-\end{equation}
-where $z_0>0$ is discussed below, the parameter $\delta \phi$ is not important for the further derivations, it reassures that the phase is a continuous function;
-the plus sign in $\pm$ corresponds to $z>0$ and the minus sign to $z<0$. This function is illustrated in Fig.~\ref{fig:Fig1}. 
-The density has a non-analytic derivative at $z=0$. The phase is a continuous function at $z=0$ (its derivative is also continuous).
-Note that the wave function is not periodic (see Eq.~(\ref{eq:phase_soliton})). This non-periodicity is not important 
-for our discussion, because we are interested in the behavior of the bosons close to the impurity. It suggests that a grey soliton
-must be formed upon a change of interaction parameters to take care of the phase slip.
-
-The parameter $\tilde \mu$ is found from the normalization condition $\int \Phi^2=1$. For $N\to\infty$, we obtain
-\begin{equation}
-\tilde \mu=\gamma \rho^2 \frac{N-1}{N}\left(1-2\sqrt{2\beta_0} \frac{ (\mathrm{tanh}(d)-1)}{\sqrt{\gamma}N}\right),
-\end{equation}
-where $\gamma=\tilde \lambda /\rho$, $\rho=N/L$, $\beta_0=1-v^2/(2\gamma \rho^2)$, and $d=\sqrt{\frac{\gamma \beta_0}{2}}\rho z_0$.
-The equation to determine $z_0$ is found by using the boundary conditions at $z=\{0,L\}$
-\begin{equation}
-\frac{\tilde g}{\rho \sqrt{2\gamma}}=\frac{\beta_0^{\frac{3}{2}}\tanh(d)}{-\beta_0+\cosh^2(d)}.
-\label{eq:c_v}
-\end{equation}
-This equation is cubic (in $\tanh(d)$), hence, the solutions can be found in a closed form.
-There are three solutions. However, only two will lead to the acceptable values of $z_0$. 
-We will refer to these steady solutions as the `polaron' and the `polaron-soliton' pair, because in the limit $g\to 0$ the former 
-corresponds to the ground state, and the latter to a gray soliton. 
-The `polaron-soliton' pair is expected to be unstable (small perturbations will lead to 
-a decay of this steady solution~\cite{hakim1997}),
-therefore, we do not consider it. The solutions merge for $z_m$ 
-\begin{equation}
-\tanh^2\left(\sqrt{\frac{\gamma \beta_0}{2}}\rho z_m\right)=\frac{\sqrt{1+\frac{4v^2}{\gamma \rho^2}}-(1+\frac{v^2}{\gamma \rho^2})}{2\beta_0},
-\label{eq:z_m}
-\end{equation}
-which is derived by taking a derivative of Eq.~(\ref{eq:c_v}) with respect to $z_0$ and equating the resulting expression to zero -- this determines 
-the maximum value of $g$ for which (for a fixed $\beta_0$) there is a steady solution.
-Equations~(\ref{eq:c_v}) and (\ref{eq:z_m}) give the equation for the critical value of $v_c$:
-\begin{equation}
-\frac{\tilde g}{\rho\sqrt{\gamma}}=\frac{3-\sqrt{1+\frac{4v_c^2}{\gamma \rho^2}}}{-1+\sqrt{1+\frac{4v_c^2}{\gamma \rho^2}}}\sqrt{\sqrt{1+\frac{4v_c^2}{\gamma \rho}}-1-\frac{v_c^2}{\gamma\rho^2}}.
-\end{equation}
-For $v>v_c$ (see Fig. 1 of the main text) there is no steady solutions.
-
-
-Now we can calculate the energy of the polaron in the thermodynamic limit
-\begin{equation}
-{\cal E}\equiv \lim_{N\to\infty, \frac{N}{L}\to \rho}\left[E(c,P)-E(c=0,P=0)\right],
-\end{equation}
-where
-\begin{equation}
-E(c,P) = \frac{P^2}{2M} + \mu N-\frac{\hbar^2 A^2 N(N-1)}{2M}-gN(N-1)\int_{0}^{L/2}|\Phi|^4\mathrm{d}z.
-\end{equation}
-Using these expressions we derive 
-\begin{equation}
-{\cal E}=\frac{P_I^2}{2M}+\frac{\hbar^2\rho}{2\kappa}\frac{\sqrt{2 \tilde g \rho \beta}}{3}\left[4 b + (-4b+\beta\mathrm{sech}^2(d))\tanh(d)\right]+\frac{\hbar P_I}{M}\lim_{N\to\infty} A N,
-\end{equation}
-where $b=1+\frac{v^2}{4\tilde g\rho}=1+\frac{\kappa P_I^2}{2M^2 g\rho}$. This energy for $v\to 0$ can be written as 
-\begin{equation}
-{\cal E}\simeq \epsilon+ \frac{P_I^2}{2m_{\mathrm{\mathrm{eff}}}},
-\end{equation}
-where $\epsilon$ is the effective energy of the polaron, and $m_{\mathrm{eff}}$ is the effective mass.
-
-
-
-
-
-\subsection{Boundary-Augmented Cost Function}\label{sec:Jaug}
-Equation \eqref{eq:cost2} shows the boundary-augmented cost function which includes a term that increases the cost for link-potential solutions that extend beyond the support region $x\in[-x_0,x_0]$. This added terms is
-\begin{equation}
-  J_{\mathrm{boundary}} = \alpha \sum_i^N J_{\mathrm{boundary}}^i,
-\end{equation}
-where 
-\begin{equation}\label{eq:Jboundaryi}
-  J_{\mathrm{boundary}}^i = \int\limits_{|x|>x_0}dx\,|V_i(x; A_i,\mu_i,\sigma_i)|^2.
-\end{equation}
-Assuming the Gaussian potential form in Eq.~\eqref{eq:V-param}, this evaluates to
-\begin{equation}\label{eq:JboundaryIGaussian}
-  J_{\mathrm{boundary}}^i = \frac{\sqrt{\pi}}{2}A_i^2\sigma_i\left[
-    \erfc\left(\frac{x_0+\mu_i}{\sigma_i}\right) +
-    \erfc\left(\frac{x_0-\mu_i}{\sigma_i}\right)
-  \right],
-\end{equation}
-where $\erfc$ is the complementary error function.
 
 
 \bibliographystyle{apsrev4-1}
