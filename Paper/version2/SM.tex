@@ -38,7 +38,7 @@ To model one impurity atom that moves through a one-dimensional environment made
 H=-\frac{\hbar^2}{2m}\sum_{i=1}^N\frac{\partial^2}{\partial x_i^2}-\frac{\hbar^2}{2M}\frac{\partial^2}{\partial y^2}+\lambda \sum_{i>j=1}^N\delta(x_i-x_j)+g \sum_{i=1}^N \delta(x_i-y),
 \end{equation}
 where $M$ is the mass of the impurity atom, and $m$ is the mass of a bosonic particle. The position of the impurity is $y$, bosons are at the coordinates $\{x_i\}$. 
-We assume that the realistic boson-boson and boson-impurity interactions are well-described by the zero-range potentials of strengths $\lambda$ and $g$ respectively. 
+We assume that the realistic boson-boson and boson-impurity interactions are well-described by the zero-range potentials of strengths $\lambda$ and $g$, respectively. 
 The environment is large by assumption. To describe it, the periodic boundary conditions are used: The particles move in a ring of the circumference $L$, such that $0<x_i<L$ and $0<y<L$.
 We are interested in the thermodynamic limit: $N, L\to \infty$ with a fixed value of the density $\rho=\frac{N}{L}$.
 
@@ -76,7 +76,7 @@ We rewrite this equation as
 \end{equation}
 where $\tilde\mu=\frac{2 \kappa \mu}{\hbar^2}$, $\tilde \lambda =\frac{2 \kappa \lambda}{\hbar^2}$, and 
 $v= \frac{2 \kappa P}{M \hbar}$ with $P={\cal P}-\hbar A(N-1)$. $P$ defines the momentum of the impurity in the thermodynamic limit;
-note that because $A$ is determined by $P$, there is a unique value of ${\cal P}$ for a given $P_I$.
+note that $A$ is determined by $P$, and there is a unique value of ${\cal P}$ for a given $P$.
 The boundary conditions for Eq.~(\ref{eq:GPE_resc}) read
 \begin{equation}
 \Phi(z=0)=\Phi(z=L); \qquad \frac{\partial \Phi}{\partial z}\bigg|^{z=0^+}_{z=L^-}= \tilde g \Phi(0),
@@ -102,7 +102,8 @@ for simplicity it is plotted in the interval $-L/2<z<L/2$, the region $0<z<L$ ea
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  \begin{figure}
  \centerline{\includegraphics[scale=0.45]{figure1appendix_new.pdf}}
-\caption{Panel {\bf a)}: The density, $|\Phi|^2 N$, of the Bose gas for $z_0=a$ (red curve), $z_0=-a$ (blue curve) ($a>0$). 
+\caption{Panel {\bf a)}: The density, $|\Phi|^2 N$, of the Bose gas for $z_0=a$ (red curve), $z_0=-a$ (blue curve) 
+($a>0$, the exact value of $a$ is not important for our discussion). 
  Note that the minimum of the density is at $-a$. 
 The shaded area is a combination of the two solutions with the singularity at $z=0$. 
 Panel {\bf b)}: The phase, $\phi$, of the Bose gas for the densities from {\bf a)}.}
@@ -142,7 +143,7 @@ This equation is cubic (in $\tanh(d)$), hence, the solutions can be found in a c
 There are three solutions. However, only two will lead to the acceptable values of $z_0$. 
 We will refer to these steady solutions as the `polaron' and the `polaron-soliton' pair, because in the limit $g\to 0$ the former 
 corresponds to the ground state, and the latter to a gray soliton. 
-The `polaron-soliton' pair is expected to be unstable (small perturbations will lead to 
+The `polaron-soliton' pair is expected to be unstable (small perturbations lead to 
 a decay of this steady solution~\cite{hakim1997}),
 therefore, we do not consider it. The solutions merge for $z_m$ 
 \begin{equation}
@@ -155,7 +156,7 @@ Equations~(\ref{eq:c_v}) and (\ref{eq:z_m}) give the equation for the critical v
 \begin{equation}
 \frac{\tilde g}{\rho\sqrt{\gamma}}=\frac{3-\sqrt{1+\frac{4v_c^2}{\gamma \rho^2}}}{-1+\sqrt{1+\frac{4v_c^2}{\gamma \rho^2}}}\sqrt{\sqrt{1+\frac{4v_c^2}{\gamma \rho}}-1-\frac{v_c^2}{\gamma\rho^2}}.
 \end{equation}
-For $v>v_c$ (see Fig. 1 of the main text) there is no steady solutions.
+For $v>v_c$ (see Fig. 4 of the main text) there is no steady solutions.
 
 
 Now we can calculate the energy of the dressed impurity in the thermodynamic limit
@@ -164,30 +165,33 @@ Now we can calculate the energy of the dressed impurity in the thermodynamic lim
 \end{equation}
 where
 \begin{equation}
-E(c,P) = \frac{P^2}{2M} + \mu N-\frac{\hbar^2 A^2 N(N-1)}{2M}-gN(N-1)\int_{0}^{L/2}|\Phi|^4\mathrm{d}z.
+E(c,P) = \frac{{\mathcal P}^2}{2M} + \mu N-\frac{\hbar^2 A^2 N(N-1)}{2M}-\lambda N(N-1)\int_{0}^{L/2}|\Phi|^4\mathrm{d}z.
 \end{equation}
 Using these expressions we derive 
 \begin{equation}
-{\cal E}=\frac{P_I^2}{2M}+\frac{\hbar^2\rho}{2\kappa}\frac{\sqrt{2 \tilde g \rho \beta}}{3}\left[4 b + (-4b+\beta\mathrm{sech}^2(d))\tanh(d)\right]+\frac{\hbar P_I}{M}\lim_{N\to\infty} A N,
+{\cal E}=\frac{P^2}{2M}+\frac{\hbar^2\rho^2}{2\kappa}\frac{\sqrt{2  \gamma \beta}}{3}\left[4 b + (-4b+\beta\mathrm{sech}^2(d))\tanh(d)\right]+\frac{\hbar P}{M}\lim_{N\to\infty} A N,
 \end{equation}
-where $b=1+\frac{v^2}{4\tilde g\rho}=1+\frac{\kappa P_I^2}{2M^2 g\rho}$. This energy for $v\to 0$ can be written as 
+where $b=1+\frac{v^2}{4\tilde \lambda \rho}=1+\frac{\kappa P^2}{2M^2 \lambda \rho}$. This energy for $v\to 0$ can be written as 
 \begin{equation}
-{\cal E}\simeq \epsilon+ \frac{P_I^2}{2m_{\mathrm{\mathrm{eff}}}},
+{\cal E}\simeq \epsilon+ \frac{P^2}{2m_{\mathrm{\mathrm{eff}}}},
+\label{eq:18}
 \end{equation}
 where $\epsilon$ is the effective energy of the dressed impurity, and $m_{\mathrm{eff}}$ is the effective mass.
 
-The parameters $m_{\mathrm{eff}}$ and $\epsilon$ calculated using the non-linear Schr{\"o}dinger equation 
-agree well with the results in the literature~\cite{mistakidis2018}. This agreement supports methods for our discussion.
-Still, further work is required to understand properties of a dressed impurity in our formalism.
+The parameters $m_{\mathrm{eff}}$ and $\epsilon$ calculated using Eq.~(\ref{eq:18})  
+agree well with the results in the literature~\cite{mistakidis2018}, supporting 
+the use of the non-linear Schr{\"o}dinger equation for solving the problem. 
+However, further work is required to understand other properties of a dressed impurity in this formalism.
 First of all, it will be interesting to investigate the critical momentum,
 which is supersonic in the employed model for $g\to 0$ and for not heavy impurities.
-Indeed, the model we solve may have a different speed of sound, because it is equivalent 
-to a heavy impurity in a gas of bosons with a mass $\kappa$. 
-It will also be interesting to calculate the residue -- the overlap between wave functions that describe 
-a state with $g=0$ and an interacting state. In the present model, the impurity changes the order parameter
-only locally, which means a non-zero residue; see~\cite{volosniev2017} for $P=0$.
-It will be interesting to calculate the overlap using an exactly solvable model, e.g., 
-a heavy impenetrable impurity in a Bose gas (solvable by Bethe ansatz) to check this result. 
+Indeed, the model we solve is equivalent to a heavy impurity moving in a gas of bosons with mass $\kappa$,  
+which has a different speed of sound. 
+Note that Fig.~4 of the main text reports on a heavy impurity ($M/m\gg 1$) for which this problem does not occur.
+It will be also interesting to investigate the residue -- the overlap between the wave function that describes 
+a state with $g=0$ and the wave function that decribes an interacting state. In the present model, the impurity changes the order parameter
+only locally, which means a non-zero residue (see~\cite{volosniev2017} for $P=0$), contradicting other 
+studies on the topic~\cite{pastukhov2017,grusdt2017}. To understand this disagreement, one could calculate the overlap using an exactly solvable model, e.g., 
+a heavy impenetrable impurity in a Bose gas (solvable by Bethe ansatz). 
 
 
 \section{Boundary-Augmented Cost Function}\label{sec:Jaug}
