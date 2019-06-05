@@ -141,9 +141,7 @@ a banded linear system of equations solvable in $O(M)$ time where $M$ is the num
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-We minimize $J_{\bm{\theta}}^{\mathrm{aug}}$ for $\bm{\theta}^*$ using the global optimization routine called Differential Evolution (DE) \cite{storn1997differential}. This evolutionary-based search algorithm is suitable given the non-convex (multiple local minima) nature of the optimization problem. Despite its simplicity, DE does a good job of balancing exploration of the space of link potentials against the need to efficiently learn from each sample with little tuning of the model settings. Empirically, we found DE to perform much better than several other approaches including random search, Nelder-Mead, and Simulated Annealing for this particular optimization problem. 
-
-
+We minimize $J_{\bm{\theta}}^{\mathrm{aug}}$ for $\bm{\theta}^*$ using the global optimization routine called Differential Evolution (DE) \cite{storn1997differential}. This evolutionary-based search algorithm is suitable given the non-convex (multiple local minima) nature of the optimization problem and the continuity of the parameter space. Despite its simplicity, DE does a good job of balancing exploration of the space of link potentials against the need to efficiently learn from each sample with little tuning of the model settings. Empirically, we found DE to converge to good solutions much more quickly than random search perhaps due to DE's ability to incorporate information from the previous iteration of the optimization algorithm. 
 
 {\it Narrow band-pass (NBP) filter transport profile. --}
 To illustrate the method described above we optimize for a NBP filter transport profile sharply-peaked near $k=k_0$. 
